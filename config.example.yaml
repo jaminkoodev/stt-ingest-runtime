@@ -1,0 +1,47 @@
+# Portable example configuration for STT Ingest Runtime.
+# Copy to config.yaml before local use.
+
+paths:
+  inbox_root: ./var/inbox
+  work_root: ./var/work
+  output_root: ./var/output
+
+runtime:
+  scan_interval_seconds: 30
+  processing_timeout_seconds: 7200
+  worker_count: 1
+  dry_run: true
+  file_stable_seconds: 10
+  max_audio_bytes: 2147483648
+
+  # Public example defaults to local execution.
+  whisper_mode: local
+  whisper_binary: whisper
+
+  # Remote execution is optional. Leave unset/empty unless intentionally used.
+  whisper_ssh_host: ""
+  whisper_ssh_user: ""
+  whisper_ssh_port: 22
+  whisper_ssh_key: ""
+  whisper_remote_path: ""
+  whisper_connect_timeout_seconds: 20
+  whisper_remote_workdir: /tmp/stt-ingest-runtime
+
+policies:
+  meeting:
+    language: en
+    model: small
+    prompt_file: ""
+    whisper_args: []
+
+  lecture:
+    language: ko
+    model: small
+    prompt_file: ""
+    whisper_args: []
+
+  podcast:
+    language: ja
+    model: small
+    prompt_file: ""
+    whisper_args: []

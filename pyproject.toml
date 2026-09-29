@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stt-ingest-runtime"
+version = "0.1.0"
+description = "Crash-recoverable file-based job runtime for speech-to-text workloads"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+dependencies = [
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+whisper = [
+    "openai-whisper>=20231117",
+]
+dev = [
+    "pytest>=7",
+    "pytest-cov",
+]
+
+[project.scripts]
+stt-ingest-runtime = "whisper_ingest.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["whisper_ingest*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
